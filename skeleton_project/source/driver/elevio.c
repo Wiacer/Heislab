@@ -5,6 +5,7 @@
 #include <netdb.h>
 #include <stdio.h>
 #include <pthread.h>
+#include <netinet/tcp.h>
 
 #include "elevio.h"
 #include "con_load.h"
@@ -35,6 +36,9 @@ void elevio_init(void){
     
     int fail = connect(sockfd, res->ai_addr, res->ai_addrlen);
     assert(fail == 0 && "Unable to connect to elevator server");
+
+    int flag = 1;
+    setsockopt(sockfd, IPPROTO_TCP, TCP_NODELAY, &flag, sizeof(flag));
     
     freeaddrinfo(res);
     
