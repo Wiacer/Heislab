@@ -43,10 +43,10 @@ int main(){
 
         check_btn_inputs(lfloor, orders);
 
-        //if(elevio_stopButton()){
-        //    prev_state = state;
-        //    state = MV_STOP;          
-        //}
+        if(elevio_stopButton()){
+            prev_state = state;
+            state = MV_STOP;          
+        }
 
         switch (state) {
             case MV_DWN:
@@ -175,6 +175,7 @@ int main(){
                     elevio_floorIndicator(lfloor);
                     elevio_motorDirection(DIRN_STOP);
                     while(state == MV_STOP){
+                        printf("%u",state);
 
                         check_btn_inputs(lfloor, orders);
 
@@ -189,9 +190,11 @@ int main(){
                                 if (orders[f][o] == 1) {
                                     if(f == lfloor){
                                         if(prev_state == MV_DWN){
-                                            floor -= 1;
-                                        }else{
                                             floor += 1;
+                                            lfloor += 1;
+                                        }else{
+                                            floor -= 1;
+                                            lfloor -= 1;
                                         }
                                     }
                                     if (f < floor) {
