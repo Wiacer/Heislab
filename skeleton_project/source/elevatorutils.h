@@ -11,9 +11,9 @@ bool is_in_list(const int list[],const int element, const int len);
 
 void bubble_sort(int list[], const int len);
 
-void complete_order(const int floor, int orders[4][2]);
-
 typedef enum {MV_DWN, MV_IDLE, MV_UP, MV_STOP} ElevState;
+
+void complete_order(const int floor, int orders[4][2], ElevState* state);
 
 void check_btn_inputs(const int floor, int orders[4][2]);
 

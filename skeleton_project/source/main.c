@@ -23,7 +23,10 @@ int main(){
     
     int floor = elevio_floorSensor();
     int lfloor = floor;
+    int floor_light = floor;
     int next_stop;
+
+    elevio_floorIndicator(floor_light);
 
     printf("Initialization done\n");
     elevio_motorDirection(DIRN_STOP);
@@ -37,9 +40,10 @@ int main(){
         floor = elevio_floorSensor();
         if (floor != -1) {
             lfloor = floor;
+            floor_light = floor;
         }
 
-        elevio_floorIndicator(lfloor);
+        elevio_floorIndicator(floor_light);
 
         check_btn_inputs(lfloor, orders);
 
@@ -74,7 +78,7 @@ int main(){
 
                 if (floor != -1) {
                     if (orders[floor][1]) {
-                        complete_order(floor, orders);
+                        complete_order(floor, orders, &state);
                     }
                 }
 
@@ -85,7 +89,7 @@ int main(){
                 elevio_motorDirection(DIRN_STOP);
                 
                 if (check_floor(orders, floor)) {
-                    complete_order(floor, orders);
+                    complete_order(floor, orders, &state);
                 }
                 
                 for (int f = 0; f < 4; f++) {
@@ -127,7 +131,7 @@ int main(){
 
                 if (floor != -1) {
                     if (orders[floor][0]) {
-                        complete_order(floor, orders);
+                        complete_order(floor, orders, &state);
                     }
                 }
 
@@ -144,17 +148,25 @@ int main(){
                     }
                 }
                 elevio_stopLamp(1);
+                //elevio_buttonLamp(3,2,1);
                 if(floor != -1){
                     elevio_doorOpenLamp(1);
                 }
                 while(elevio_stopButton());
+                //elevio_buttonLamp(3,2,0);
+                elevio_stopLamp(0);
                 if(floor != -1){
                     int duration = 3;
     
                     time_t startTime = time(NULL);
                     time_t endTime = startTime + duration;
+                    bool stop_again = false;
 
                     while (time(NULL) < endTime) {
+                        if(elevio_stopButton()){
+                            stop_again = true;
+                            break;
+                        }
                         elevio_doorOpenLamp(1);
                         check_btn_inputs(floor, orders);
                         orders[floor][0] = 0;
@@ -167,22 +179,27 @@ int main(){
                             endTime = time(NULL) + duration;
                         }
                     }
+                    elevio_doorOpenLamp(0);
+                    if(stop_again){
+                        state = MV_STOP;
+                    }else{
+                        state = MV_IDLE;
+                    }
                 }else{
                     floor = elevio_floorSensor();
                     if (floor != -1) {
                         lfloor = floor;
+                        floor_light;
                     }
-                    elevio_floorIndicator(lfloor);
+                    elevio_floorIndicator(floor_light);
                     elevio_motorDirection(DIRN_STOP);
                     while(state == MV_STOP){
                         printf("%u",state);
 
                         check_btn_inputs(lfloor, orders);
-
-
                 
                         if (check_floor(orders, floor)) {
-                            complete_order(floor, orders);
+                            complete_order(floor, orders, &state);
                         }
                         
                         for (int f = 0; f < 4; f++) {
@@ -190,16 +207,14 @@ int main(){
                                 if (orders[f][o] == 1) {
                                     if(f == lfloor){
                                         if(prev_state == MV_DWN){
-                                            floor += 1;
-                                            lfloor += 1;
-                                        }else{
-                                            floor -= 1;
                                             lfloor -= 1;
+                                        }else{
+                                            lfloor += 1;
                                         }
                                     }
-                                    if (f < floor) {
+                                    if (f < lfloor) {
                                         state = MV_DWN;
-                                    } else if (f > floor) {
+                                    } else if (f > lfloor) {
                                         state = MV_UP;
                                     }
                                 }

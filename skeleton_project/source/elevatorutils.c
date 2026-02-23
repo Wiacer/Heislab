@@ -26,7 +26,7 @@ void bubble_sort(int list[], const int len){
     }
 }
 
-void complete_order(const int floor, int orders[4][2]) {
+void complete_order(const int floor, int orders[4][2], ElevState* state) {
 
     int duration = 3;
     
@@ -34,6 +34,10 @@ void complete_order(const int floor, int orders[4][2]) {
     time_t endTime = startTime + duration;
 
     while (time(NULL) < endTime) {
+        if(elevio_stopButton()){
+            *state = MV_STOP;
+            break;
+        }
         elevio_doorOpenLamp(1);
         check_btn_inputs(floor, orders);
         orders[floor][0] = 0;
