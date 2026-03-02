@@ -11,12 +11,29 @@ bool is_in_list(const int list[],const int element, const int len);
 
 void bubble_sort(int list[], const int len);
 
-typedef enum {MV_DWN, MV_IDLE, MV_UP, MV_STOP} ElevState;
+bool any_true(int* arr, int len);
 
-void complete_order(const int floor, int orders[4][2], ElevState* state);
+typedef enum {MV_DWN, MV_IDLE, MV_UP, MV_STOP, STOP_IDLE, INIT} ElevState;
 
-void check_btn_inputs(const int floor, int orders[4][2]);
+struct ProgramState{
+    ElevState elevatorState;
+    ElevState previousState;
+    int floor;
+    int lastFloor;
+    int floorLight;
+    int orders[N_FLOORS][N_BUTTONS];
+};
 
-bool check_floor(const int orders[4][2], const int floor);
+void complete_order(struct ProgramState* state);
 
-void stop_state(const int floor, ElevState* state, int orders[4][2]);
+void check_btn_inputs(struct ProgramState* state);
+
+bool check_floor(struct ProgramState* state);
+
+void update_program_state(struct ProgramState* programState);
+
+void check_stop(struct ProgramState* programState);
+
+void check_orders(struct ProgramState* programState);
+
+void stop_init(struct ProgramState* programState);
