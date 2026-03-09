@@ -7,10 +7,6 @@
 #include <time.h>
 #include "driver/elevio.h"
 
-bool is_in_list(const int list[],const int element, const int len);
-
-void bubble_sort(int list[], const int len);
-
 bool any_true(int* arr, int len);
 
 typedef enum {MV_DWN, MV_IDLE, MV_UP, MV_STOP, STOP_IDLE, INIT} ElevState;
