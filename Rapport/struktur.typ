@@ -3,6 +3,13 @@ Testing og opprydding av kode slik at den fungerer bedre og ser finere ut, i hen
 
 Programmets funksjon kan beskrives som følger.
 
+#figure(
+  placement: auto,
+  image("media/State_diagram_final.svg"),
+  caption: [Fullført tilstandsdiagram],
+  scope: "parent",
+) <stateUMLFinal>
+
 == Fellestrekk
 Alle tilstander utenom stopp og init kaller @lst:updateIO, som oppdaterer indikator lys og ordre basert på inputs og sensorer. Og @lst:checkStop som endrer tilstand til Stopp dersom stoppknappen blir trykket.
 
@@ -22,13 +29,6 @@ Stopp tilstanden begynner med å slette alle ordre og skru av indikatorlys tilh�
 
 == Stopp idle tilstand
 Denne tilstanden er et spesialtilfelle av idle tilstanden. Den fungerer på mange måter likt, med unntak av at den avhenger av tilstanden den var i før stopp knappen ble trykket på, for å bestemme rettningen den går når den får en ordre. Altså heisen vil alltid vite forrige etasjen den var i, men dersom den er mellom to etasjer så veit for eksempel at den er mellom 2. og 1. etasje dersom forrige etasje var 2 og tilstanden dens er ned. Denne informasjonen bruker den til å fungere virtuelt på samme måte som idle tilstanden (Forrige tilstandsvariabelen vil ikke oppdateres dersom den er i stopp idle når stopp knappen trykkes).
-
-#figure(
-  placement: auto,
-  image("media/State_diagram_final.svg"),
-  caption: [Fullført tilstandsdiagram],
-  scope: "parent",
-) <stateUMLFinal>
 
 === Kodesnutter
 #figure(
