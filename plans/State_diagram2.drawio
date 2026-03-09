@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="bwo3SydeIS9WiOZbxc2s">
-        <mxGraphModel dx="1212" dy="387" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+        <mxGraphModel dx="1962" dy="922" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -25,7 +25,7 @@
                         <mxPoint x="103" y="-39" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="7p27vQC-Nd5ZuxBjUoiN-5" value="Init state" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+                <mxCell id="7p27vQC-Nd5ZuxBjUoiN-5" value="Init_state" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
                     <mxGeometry x="350" y="140" width="110" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="7p27vQC-Nd5ZuxBjUoiN-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="7p27vQC-Nd5ZuxBjUoiN-8" target="7p27vQC-Nd5ZuxBjUoiN-63" edge="1">
@@ -107,8 +107,8 @@
                         <mxPoint x="660" y="360" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="7p27vQC-Nd5ZuxBjUoiN-76" value="{Service() stops the elevator, opens the door and then closes them&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;}&lt;/span&gt;&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;" parent="1" vertex="1">
-                    <mxGeometry y="480" width="120" height="90" as="geometry"/>
+                <mxCell id="7p27vQC-Nd5ZuxBjUoiN-76" value="{Service() stopper heisen, fjerner bestillinger på samme etasje, åpner døren og så lukker den&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;}&lt;/span&gt;&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;" parent="1" vertex="1">
+                    <mxGeometry y="480" width="120" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="7p27vQC-Nd5ZuxBjUoiN-88" value="order[floor][1]&lt;br&gt;[down_orders_left != 0] / &lt;br&gt;Service()" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="740" y="420" as="geometry"/>
