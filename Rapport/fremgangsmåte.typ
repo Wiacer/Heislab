@@ -19,9 +19,15 @@ Per den pragmatiske V-modellen så starter vi med kravspesifikasjonene til heise
   caption: [Use-case diagram],
 ) <usecaseUML>
 
-Videre gjorde vi idemyldring for arkitekturdesign gjennom å skrive diverse enkle koder der vi til slutt bestemte oss for en tilstandsmaskin som er videre forklart i struktur seksjonen.
+Videre gjorde vi idemyldring for arkitekturdesign gjennom å vurdere kodene skrevet i prototypefasen der vi til slutt bestemte oss for en tilstandsmaskin med tilstandene i henhold til @stateUML.
 
-(figur)
+#figure(
+  image("media/State_diagram2.svg"),
+  caption: [Førsteutkast av tilstands diagram],
+) <stateUML>
 
+Modulene vi endte opp med å bruke var `main.c` og `elevatorutils.c` der `main.c` inneholder tilstandsmaskinen og `elevatorutils.c` inkluderer alle hjelpefunksjoner.
 
+Med utgangspunkt i det oppsatte rammeverket vårt, oversatte vi og implementerte vi koden vår i C.
 
+Førsteutkastet av denne implementasjonen ga en nogenlunde fugerende kode. Hver implementerte modul ble tested og fungerte. Men den passerte ikke alle kravene til FAT testen. Spesifikt test S6 der Stopp tilstanden kunne huske dens forrige etasje, men på grunn av tilstands oppsettet, er den også avhengig av hvilken rettning tilstanden er i. Derfor endte vi opp med å legge til en til tilstand som beskriver når heisen er stoppet imellom to etasjer. 
