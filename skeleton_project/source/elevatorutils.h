@@ -37,5 +37,3 @@ void stop_init(struct ProgramState* programState);
 void check_new_orders(struct ProgramState* programState);
 
 void elevator_initialize(struct ProgramState* programState);
-
-void update_state(struct ProgramState* programState);

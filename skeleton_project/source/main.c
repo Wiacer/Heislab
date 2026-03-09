@@ -23,21 +23,30 @@ int main(){
             case MV_IDLE:
                 elevio_motorDirection(DIRN_STOP);
                 while(programState.elevatorState == MV_IDLE){
-                    update_state(&programState);
+                    update_IO(&programState);
+                    if (any_true(programState.orders[programState.floor],N_BUTTONS)){
+                        complete_order(&programState);
+                    }
+                    check_new_orders(&programState);
+                    check_stop(&programState);
                 }
                 break;
 
             case MV_DWN:
                 elevio_motorDirection(DIRN_DOWN);
                 while(programState.elevatorState == MV_DWN){
-                    update_state(&programState);
+                    update_IO(&programState);
+                    check_orders(&programState);
+                    check_stop(&programState);
                 }
                 break;
 
             case MV_UP:
                 elevio_motorDirection(DIRN_UP);
                 while(programState.elevatorState == MV_UP){
-                    update_state(&programState);
+                    update_IO(&programState);
+                    check_orders(&programState);
+                    check_stop(&programState);
                 }
                 break;
 
@@ -53,7 +62,9 @@ int main(){
 
             case STOP_IDLE:
                 while(programState.elevatorState == STOP_IDLE){
-                    update_state(&programState);
+                    update_IO(&programState);
+                    check_new_orders(&programState);
+                    check_stop(&programState);
                 }
                 break;
             

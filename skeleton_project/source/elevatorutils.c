@@ -174,14 +174,3 @@ void elevator_initialize(struct ProgramState* programState){
     elevio_floorIndicator(programState->floorLight);
     elevio_motorDirection(DIRN_STOP);
 }
-
-void update_state(struct ProgramState* programState){
-    update_IO(programState);
-    if (programState->elevatorState == MV_IDLE){
-        if(any_true(programState->orders[programState->floor],N_BUTTONS)){
-            complete_order(programState);
-        }   
-    }
-    check_orders(programState);
-    check_stop(programState);
-}
