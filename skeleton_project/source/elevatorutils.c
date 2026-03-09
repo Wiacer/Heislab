@@ -137,7 +137,7 @@ void check_new_orders(struct ProgramState* programState){
     for (int f = 0; f < N_FLOORS; f++) {
         if (any_true(programState->orders[f],N_BUTTONS)) {
             if((f == programState->lastFloor) && (programState->elevatorState == STOP_IDLE)){
-                if(programState->previousState == MV_DWN){
+                if((programState->previousState == MV_DWN) && programState->orders[f][0]){
                     programState->lastFloor -= 1;
                     programState->elevatorState = MV_UP;
                     break;

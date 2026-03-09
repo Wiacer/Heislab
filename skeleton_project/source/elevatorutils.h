@@ -22,11 +22,12 @@ struct ProgramState{
 
 void complete_order(struct ProgramState* programState);
 
+// IO management
+void update_IO(struct ProgramState* programState);
+
 void check_btn_inputs(struct ProgramState* programState);
 
 bool check_floor(struct ProgramState* programState);
-
-void update_IO(struct ProgramState* programState);
 
 void check_stop(struct ProgramState* programState);
 
