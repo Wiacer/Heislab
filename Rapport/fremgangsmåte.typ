@@ -1,3 +1,5 @@
+#include "struktur.typ"
+
 = Fremgangsmåte
 
 Vi startet med en prototypefase der vi skrev nogenlunde fungerende kode for å forstå det utleverte rammeverket og driveren til heisen og brukte videre V-modellen for videreutvikling og opprydding av prototypen.
