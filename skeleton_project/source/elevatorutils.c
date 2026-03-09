@@ -177,8 +177,10 @@ void elevator_initialize(struct ProgramState* programState){
 
 void update_state(struct ProgramState* programState){
     update_IO(programState);
-    if (any_true(programState->orders[programState->floor],N_BUTTONS) && programState->elevatorState != MV_IDLE){
-        complete_order(programState);
+    if (programState->elevatorState == MV_IDLE){
+        if(any_true(programState->orders[programState->floor],N_BUTTONS)){
+            complete_order(programState);
+        }   
     }
     check_orders(programState);
     check_stop(programState);
