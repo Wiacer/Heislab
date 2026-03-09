@@ -37,8 +37,10 @@ void elevio_init(void){
     int fail = connect(sockfd, res->ai_addr, res->ai_addrlen);
     assert(fail == 0 && "Unable to connect to elevator server");
 
+    // Dette la vi til selv fordi knapp pollingen var for treg
     int flag = 1;
     setsockopt(sockfd, IPPROTO_TCP, TCP_NODELAY, &flag, sizeof(flag));
+    //
     
     freeaddrinfo(res);
     
