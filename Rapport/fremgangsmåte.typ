@@ -26,8 +26,11 @@ Videre gjorde vi idemyldring for arkitekturdesign gjennom å vurdere kodene skre
   caption: [Førsteutkast av tilstands diagram],
 ) <stateUML>
 
-Modulene vi endte opp med å bruke var `main.c` og `elevatorutils.c` der `main.c` inneholder tilstandsmaskinen og `elevatorutils.c` inkluderer alle hjelpefunksjoner.
+Dersom heisen beveger seg i en rettning skal den fullføre alle ordre som er forran den i den rettningen, med prioritet av ordre i samme rettning. Og at den går i idle dersom den ikke har flere ordre i den rettningen, og at idle tilstand alltid ser etter nye ordre og går i rettningen til den første ordren den registrerer.
 
-Med utgangspunkt i det oppsatte rammeverket vårt, oversatte vi og implementerte vi koden vår i C.
+Med utgangspunkt i det oppsatte rammeverket vårt, oversatte vi og implementerte vi koden vår i C. 
 
-Førsteutkastet av denne implementasjonen ga en nogenlunde fugerende kode. Hver implementerte modul ble tested og fungerte. Men den passerte ikke alle kravene til FAT testen. Spesifikt test S6 der Stopp tilstanden kunne huske dens forrige etasje, men på grunn av tilstands oppsettet, er den også avhengig av hvilken rettning tilstanden er i. Derfor endte vi opp med å legge til en til tilstand som beskriver når heisen er stoppet imellom to etasjer. 
+Modulene vi endte opp med å bruke var `main.c` og `elevatorutils.c` der `main.c` inneholder tilstandsmaskinen og `elevatorutils.c` inkluderer alle hjelpefunksjoner. Som for eksempel `void check_orders(ElevState programState)`.
+Som skjekker om det er ordre i etasjene den er i og fullfører den dersom den er gyldig, gitt kravene. 
+
+Førsteutkastet av denne implementasjonen ga en nogenlunde fungerende kode. Hver implementerte modul ble tested og fungerte. Men den passerte ikke alle kravene til FAT testen. Spesifikt test S6 der Stopp tilstanden kunne huske dens forrige etasje, men på grunn av tilstands oppsettet, er den også avhengig av hvilken rettning tilstanden er i. Derfor endte vi opp med å legge til en til tilstand som beskriver når heisen er stoppet imellom to etasjer. 
