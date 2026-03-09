@@ -20,7 +20,7 @@ void complete_order(struct ProgramState* programState){
 
     while (time(NULL) < endTime){
         if(elevio_stopButton()){
-            programState->elevatorState = MV_STOP;
+            programState->elevatorState = STOP;
             break;
         }
         elevio_doorOpenLamp(1);
@@ -66,7 +66,7 @@ bool check_floor(struct ProgramState* programState) {
     return false;
 }
 
-void update_program_state(struct ProgramState* programState){
+void update_IO(struct ProgramState* programState){
     programState->floor = elevio_floorSensor();
     if (programState->floor != -1) {
         programState->lastFloor = programState->floor;
@@ -81,7 +81,7 @@ void check_stop(struct ProgramState* programState){
         if(programState->elevatorState != STOP_IDLE){
             programState->previousState = programState->elevatorState;
         }
-        programState->elevatorState = MV_STOP;
+        programState->elevatorState = STOP;
     }
 }
 
@@ -173,4 +173,13 @@ void elevator_initialize(struct ProgramState* programState){
     }
     elevio_floorIndicator(programState->floorLight);
     elevio_motorDirection(DIRN_STOP);
+}
+
+void update_state(struct ProgramState* programState){
+    update_IO(programState);
+    if (any_true(programState->orders[programState->floor],N_BUTTONS) && programState->elevatorState != MV_IDLE){
+        complete_order(programState);
+    }
+    check_orders(programState);
+    check_stop(programState);
 }
