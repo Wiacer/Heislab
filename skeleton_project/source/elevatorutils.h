@@ -24,11 +24,11 @@ struct ProgramState{
     int orders[N_FLOORS][N_BUTTONS];
 };
 
-void complete_order(struct ProgramState* state);
+void complete_order(struct ProgramState* programState);
 
-void check_btn_inputs(struct ProgramState* state);
+void check_btn_inputs(struct ProgramState* programState);
 
-bool check_floor(struct ProgramState* state);
+bool check_floor(struct ProgramState* programState);
 
 void update_program_state(struct ProgramState* programState);
 
@@ -37,3 +37,7 @@ void check_stop(struct ProgramState* programState);
 void check_orders(struct ProgramState* programState);
 
 void stop_init(struct ProgramState* programState);
+
+void check_new_orders(struct ProgramState* programState);
+
+void elevator_initialize(struct ProgramState* programState);
