@@ -29,10 +29,10 @@ Etter prototypingen begynte vi med den pragmatiske V-modellen og per den så sta
   scope: "parent",
 ) <usecaseUML>
 
-Tilstandsmaskinen som vi drøftet frem gjennom prototyping vises i @stateUML.
+Videre gjorde vi idemyldring for arkitekturdesign gjennom å vurdere kodene skrevet i prototypefasen der vi til slutt kom fram til hvordan bestillingssystemet og arkitekturen kunne mest fornuftig implementeres. Det var feks her at vi kom fram til at vi skulle bruke en tilstandsmaskin for sluttimplementasjonen og hvilke tilstander vi kom til å trenge som er illustrert i @stateUML.
 
-Ut ifra tilstandsmaskinen kan use-case diagrammet beskrives slikt:
-
+Gitt tilstandsmaskinen kan use-case diagrammet beskrives slikt:
+#block(breakable: false)[
 === Velg Etasje
 #pad(left: 2em)[
   Pre-conditions:
@@ -58,12 +58,62 @@ Ut ifra tilstandsmaskinen kan use-case diagrammet beskrives slikt:
   Utvidelser:
   #pad(left: 2em)[
     1a. Hvis stoppknappen trykkes følger suksess-scenario alternativ flow ifølge use-case til stopknappen.
+
+    2a. Døra forblir åpen dersom det er en obstruksjon
+  ]
+]
+]
+
+#block(breakable: false)[
+=== Stopp
+#pad(left: 2em)[
+  Pre-conditions:
+  #pad(left: 2em)[
+    Heisen er initialisert.
+  ]
+  Trigger:
+  #pad(left: 2em)[
+    Stoppknappen trykkes.
+  ]
+  Suksess-scenario:
+  #pad(left: 2em)[
+    1. Heisen stopper
+
+    2. Alle bestillinger slettes.
+
+    3. Døra åpnes dersom heisen er i en etasje
   ]
 
-  Suksessgaranti:
+  Utvidelser:
   #pad(left: 2em)[
-    1a. Hvis stopp-knappen trykkes følger suksess-scenario alternativ flow ifølge use-case til stop-knappen.
+    1a. Døra forblir åpen intill 3 sekunder etter stoppknappen trykkes
+
+    2a. Døra forblir åpen dersom det er en obstruksjon.
   ]
+]
+]
+
+#block(breakable: false)[
+=== Gå opp/ned
+#pad(left: 2em)[
+  Pre-conditions:
+  #pad(left: 2em)[
+    som velg etasje
+  ]
+  Trigger:
+  #pad(left: 2em)[
+    Knapp opp eller ned utenfor heisen blir trykket
+  ]
+  Suksess-scenario:
+  #pad(left: 2em)[
+    som velg etasje
+  ]
+
+  Utvidelser:
+  #pad(left: 2em)[
+    som velg etasje
+  ]
+]
 ]
 
 #figure(

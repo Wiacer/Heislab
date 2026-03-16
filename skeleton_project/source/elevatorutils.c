@@ -157,7 +157,9 @@ void check_new_orders(struct ProgramState* programState){
 
 void elevator_initialize(struct ProgramState* programState){
     elevio_doorOpenLamp(0);
-    elevio_motorDirection(DIRN_DOWN);
+    if (elevio_floorsensor() == -1) {
+        elevio_motorDirection(DIRN_DOWN);
+    }
     while (elevio_floorSensor() == -1) {
         continue;
     }

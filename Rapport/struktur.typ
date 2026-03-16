@@ -1,6 +1,7 @@
 = Struktur
 Testing og opprydding av kode slik at den fungerer bedre og ser finere ut, i henhold til V-modellens prosess, ga det ferdige produktet beskrevet her.
 
+Et overblikk over programmet funksjon kan gis med det ferdige tilstandsdiagrammet i @stateUMLFinal og kalssedigrammet i @ClassDiagram
 Programmets funksjon kan beskrives som følger.
 
 #figure(
@@ -10,13 +11,27 @@ Programmets funksjon kan beskrives som følger.
   scope: "parent",
 ) <stateUMLFinal>
 
+#figure(
+  placement: auto,
+  image("media/klasse_diagram.svg"),
+  caption: [Klasse diagram],
+  scope: "parent",
+) <ClassDiagram>
+
 == Fellestrekk
 Alle tilstander utenom stopp og init kaller @lst:updateIO, som oppdaterer indikator lys og ordre basert på inputs og sensorer. Og @lst:checkStop som endrer tilstand til Stopp dersom stoppknappen blir trykket.
 
 Heisens tilstand beskrives med enumen @lst:elevState og structen @lst:programState 
 
 == Initialiserings tilstand
-Når programmet startes så skjekker heisen først etter gyldig etasje. Her tar den ingen inputs. Dersom den starter i en gyldig etasje går den umiddelbart til idle state. Hvis ikke så begynner heisen å bevege seg nedover intill den treffer en gyldig etasje.
+Når programmet startes så skjekker heisen først etter gyldig etasje. Her tar den ingen inputs. Dersom den starter i en gyldig etasje går den umiddelbart til idle state. Hvis ikke så begynner heisen å bevege seg nedover intill den treffer en gyldig etasje. Initialiseringen kan videre beskrives med @initialStateSequence
+
+#figure(
+  placement: auto,
+  image("media/sekvens_diagram_init.svg"),
+  caption: [Sekvensdiagram for initialiseringen],
+  scope: "parent",
+) <initialStateSequence>
 
 == Idle tilstand
 I idle tilstand vil programmet lese ordre listen intill den finner en ny ordre.  Dersom ordren er i etasjen den er i åpner den bare døren. Ellers vil den endre tilstanden sin til rettningen ordren kom fra.

@@ -1,1 +1,2 @@
 = Refleksjon
+I begynnelsen så var det litt vanskelig å komme i gang, ettersom prosessen enda var litt ukjent. Derfor begynte vi med det kjente, altså å bare teste litt å se hva vi kommer på med. Senere med denne kunnskapen så begynte vi å abstrahere ifølge v-modellen og UML og vi kom frem til at det ga oss et bedre overblikk for programmet slik at vi kunne lage et mer ordentlig og oversiktlig program.
