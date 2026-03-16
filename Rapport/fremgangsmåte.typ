@@ -20,7 +20,7 @@ Fra prototypefasen fant vi blandt annet at den utleverte driverkoden var ekstrem
 
 Siden driveren kommuniserer med elevator serveren gjennom mange små packets over TCP så ville TCP automatisk vente på flere packets før den sender dem som en stor packet. Til vanlig er dette fornuftig siden packetsene vi sendte var ofte mindre enn overheadet som trengtes til TCP.
 
-Videre i prototypingen kom vi også fram til hvordan bestillingssystemet og arkitekturen kunne mest fornuftig implementeres. Det var feks i dette steget at vi kom fram til å bruke en tilstandsmaskin for sluttimplementasjonen og hvilke tilstander vi kom til å trenge.
+Gjennom prototypingen kom vi også fram til hvordan bestillingssystemet og arkitekturen kunne mest fornuftig implementeres. Det var feks i dette steget at vi kom fram til å bruke en tilstandsmaskin for sluttimplementasjonen og hvilke tilstander vi kom til å trenge.
 
 Per den pragmatiske V-modellen så starter vi med kravspesifikasjonene til heisen der vi tar utgangspunkt i FAT-kravene gitt i oppgavebeskrivelsen og use-case diagrammet i @usecaseUML.
 
@@ -31,7 +31,42 @@ Per den pragmatiske V-modellen så starter vi med kravspesifikasjonene til heise
   scope: "parent",
 ) <usecaseUML>
 
-Videre gjorde vi idemyldring for arkitekturdesign gjennom å vurdere kodene skrevet i prototypefasen der vi til slutt bestemte oss for en tilstandsmaskin med tilstandene i henhold til @stateUML.
+Tilstandsmaskinen som vi drøftet frem gjennom prototyping vises i @stateUML.
+
+Ut ifra tilstandsmaskinen kan use-case diagrammet beskrives slikt:
+
+=== Velg Etasje
+#pad(left: 2em)[
+  Pre-conditions:
+  #pad(left: 2em)[
+    Heisen er initialisert og 
+    stopp-knappen er sluppet.
+  ]
+  Trigger:
+  #pad(left: 2em)[
+    Bestillingsknapp inne i heisen blir trykket.
+  ]
+  Suksess-scenario:
+  #pad(left: 2em)[
+    1. Heisens tilstand og motor settes til tilhørende rettning.
+
+    2. Heisen ankommer etasjen.
+
+    3. Heisen stopper.
+
+    4. Heisen åpner døra i 3 sekunder.
+  ]
+
+  Utvidelser:
+  #pad(left: 2em)[
+    1a. Hvis stoppknappen trykkes følger suksess-scenario alternativ flow ifølge use-case til stopknappen.
+  ]
+
+  Suksessgaranti:
+  #pad(left: 2em)[
+    1a. Hvis stopp-knappen trykkes følger suksess-scenario alternativ flow ifølge use-case til stop-knappen.
+  ]
+]
 
 #figure(
   placement: auto,
