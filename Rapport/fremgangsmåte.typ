@@ -24,7 +24,7 @@ Etter prototypingen begynte vi med den pragmatiske V-modellen og per den så sta
 
 #figure(
   placement: auto,
-  image("media/use_case.svg"),
+  image("media/use_case.png"),
   caption: [Use-case diagram],
   scope: "parent",
 ) <usecaseUML>
@@ -118,7 +118,7 @@ Gitt tilstandsmaskinen kan use-case diagrammet beskrives slikt:
 
 #figure(
   placement: auto,
-  image("media/State_diagram2.svg"),
+  image("media/State_diagram2.png"),
   caption: [Førsteutkast av tilstands diagram],
   scope: "parent",
 ) <stateUML>

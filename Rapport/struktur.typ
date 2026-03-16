@@ -6,14 +6,14 @@ Programmets funksjon kan beskrives som følger.
 
 #figure(
   placement: auto,
-  image("media/State_diagram_final.svg"),
+  image("media/State_diagram_final.png"),
   caption: [Fullført tilstandsdiagram],
   scope: "parent",
 ) <stateUMLFinal>
 
 #figure(
   placement: auto,
-  image("media/klasse_diagram.svg"),
+  image("media/klasse_diagram.png"),
   caption: [Klasse diagram],
   scope: "parent",
 ) <ClassDiagram>
@@ -28,7 +28,7 @@ Når programmet startes så skjekker heisen først etter gyldig etasje. Her tar 
 
 #figure(
   placement: auto,
-  image("media/sekvens_diagram_init.svg"),
+  image("media/sekvens_diagram_init.png"),
   caption: [Sekvensdiagram for initialiseringen],
   scope: "parent",
 ) <initialStateSequence>
