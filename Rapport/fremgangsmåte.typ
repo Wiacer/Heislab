@@ -20,9 +20,7 @@ Fra prototypefasen fant vi blandt annet at den utleverte driverkoden var ekstrem
 
 Siden driveren kommuniserer med elevator serveren gjennom mange små packets over TCP så ville TCP automatisk vente på flere packets før den sender dem som en stor packet. Til vanlig er dette fornuftig siden packetsene vi sendte var ofte mindre enn overheadet som trengtes til TCP.
 
-Videre i prototypingen kom vi også fram til hvordan bestillingssystemet og arkitekturen kunne mest fornuftig implementeres. Det var feks i dette steget at vi kom fram til å bruke en tilstandsmaskin for sluttimplementasjonen og hvilke tilstander vi kom til å trenge.
-
-Per den pragmatiske V-modellen så starter vi med kravspesifikasjonene til heisen der vi tar utgangspunkt i FAT-kravene gitt i oppgavebeskrivelsen og use-case diagrammet i @usecaseUML.
+Etter prototypingen begynte vi med den pragmatiske V-modellen og per den så starter vi med kravspesifikasjonene til heisen der vi tar utgangspunkt i FAT-kravene gitt i oppgavebeskrivelsen og use-case diagrammet i @usecaseUML.
 
 #figure(
   placement: auto,
@@ -31,7 +29,7 @@ Per den pragmatiske V-modellen så starter vi med kravspesifikasjonene til heise
   scope: "parent",
 ) <usecaseUML>
 
-Videre gjorde vi idemyldring for arkitekturdesign gjennom å vurdere kodene skrevet i prototypefasen der vi til slutt bestemte oss for en tilstandsmaskin med tilstandene i henhold til @stateUML.
+Videre gjorde vi idemyldring for arkitekturdesign gjennom å vurdere kodene skrevet i prototypefasen der vi til slutt kom fram til hvordan bestillingssystemet og arkitekturen kunne mest fornuftig implementeres. Det var feks her at vi kom fram til at vi skulle bruke en tilstandsmaskin for sluttimplementasjonen og hvilke tilstander vi kom til å trenge som er illustrert i @stateUML.
 
 #figure(
   placement: auto,
@@ -40,7 +38,7 @@ Videre gjorde vi idemyldring for arkitekturdesign gjennom å vurdere kodene skre
   scope: "parent",
 ) <stateUML>
 
-Dersom heisen beveger seg i en rettning skal den fullføre alle ordre som er forran den i den rettningen, med prioritet av ordre i samme rettning. Og at den går i idle dersom den ikke har flere ordre i den rettningen, og at idle tilstand alltid ser etter nye ordre og går i rettningen til den første ordren den registrerer.
+Når det gjelder heisens oppførsel bestemte vi at hvis den beveger seg i en rettning skal den fullføre alle ordre som er forran den i den rettningen, med prioritet av ordre i samme rettning (dvs at den ignorerer ordre i motsatt rettning hvis ordre i samme retning er tilgjengelig forran den). Og at den går i idle dersom den ikke har flere ordre i den rettningen, og at idle tilstand alltid ser etter nye ordre og går i rettningen til den første ordren den registrerer.
 
 Med utgangspunkt i det oppsatte rammeverket vårt, oversatte vi og implementerte vi koden vår i C. 
 
