@@ -1,8 +1,8 @@
 = Fremgangsmåte
 
-Vi startet med en prototypefase der vi skrev nogenlunde fungerende kode for å forstå det utleverte rammeverket og driveren til heisen og brukte videre V-modellen for videreutvikling og opprydding av prototypen.
+Vi startet med en prototypefase der vi skrev nogenlunde fungerende kode for å forstå det utleverte rammeverket og driveren til heisen. Videre brukte vi V-modellen og erfaringene ifra prototypingen for å strukturere, planlegge og implementere den faktiske produksjonskoden.
 
-Fra prototypefasen fant vi blandt annet at de utleverte driverkodene var ekstremt trege og til tider gjorde at heisen kjørte forbi en etasje før den registrerte den. Derfor implementerte vi @lst:DriverOpt
+Fra prototypefasen fant vi blandt annet at den utleverte driverkoden var ekstremt treg og til tider gjorde at heisen kjørte forbi en etasje før den registrerte den. Derfor implementerte vi @lst:DriverOpt i elevio_init funksjonen til elevio.c for å forbedre responsen på driveren.
 
 #figure(
   raw(lang: "c", block: true, "
@@ -17,6 +17,10 @@ Fra prototypefasen fant vi blandt annet at de utleverte driverkodene var ekstrem
   "),
   caption: [Setter et flag i initialisering som gjør at TCP sender packets individuelt istedenfor å vente på flere packets.],
 ) <lst:DriverOpt>
+
+Siden driveren kommuniserer med elevator serveren gjennom mange små packets over TCP så ville TCP automatisk vente på flere packets før den sender dem som en stor packet. Til vanlig er dette fornuftig siden packetsene vi sendte var ofte mindre enn overheadet som trengtes til TCP.
+
+Videre i prototypingen kom vi også fram til hvordan bestillingssystemet og arkitekturen kunne mest fornuftig implementeres. Det var feks i dette steget at vi kom fram til å bruke en tilstandsmaskin for sluttimplementasjonen og hvilke tilstander vi kom til å trenge.
 
 Per den pragmatiske V-modellen så starter vi med kravspesifikasjonene til heisen der vi tar utgangspunkt i FAT-kravene gitt i oppgavebeskrivelsen og use-case diagrammet i @usecaseUML.
 
