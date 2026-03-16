@@ -20,13 +20,7 @@ Fra prototypefasen fant vi blandt annet at den utleverte driverkoden var ekstrem
 
 Siden driveren kommuniserer med elevator serveren gjennom mange små packets over TCP så ville TCP automatisk vente på flere packets før den sender dem som en stor packet. Til vanlig er dette fornuftig siden packetsene vi sendte var ofte mindre enn overheadet som trengtes til TCP.
 
-<<<<<<< HEAD
-Gjennom prototypingen kom vi også fram til hvordan bestillingssystemet og arkitekturen kunne mest fornuftig implementeres. Det var feks i dette steget at vi kom fram til å bruke en tilstandsmaskin for sluttimplementasjonen og hvilke tilstander vi kom til å trenge.
-
-Per den pragmatiske V-modellen så starter vi med kravspesifikasjonene til heisen der vi tar utgangspunkt i FAT-kravene gitt i oppgavebeskrivelsen og use-case diagrammet i @usecaseUML.
-=======
 Etter prototypingen begynte vi med den pragmatiske V-modellen og per den så starter vi med kravspesifikasjonene til heisen der vi tar utgangspunkt i FAT-kravene gitt i oppgavebeskrivelsen og use-case diagrammet i @usecaseUML.
->>>>>>> 88e017434b7883ab5eee414c6a53beef38193837
 
 #figure(
   placement: auto,
@@ -35,7 +29,6 @@ Etter prototypingen begynte vi med den pragmatiske V-modellen og per den så sta
   scope: "parent",
 ) <usecaseUML>
 
-<<<<<<< HEAD
 Tilstandsmaskinen som vi drøftet frem gjennom prototyping vises i @stateUML.
 
 Ut ifra tilstandsmaskinen kan use-case diagrammet beskrives slikt:
@@ -72,9 +65,6 @@ Ut ifra tilstandsmaskinen kan use-case diagrammet beskrives slikt:
     1a. Hvis stopp-knappen trykkes følger suksess-scenario alternativ flow ifølge use-case til stop-knappen.
   ]
 ]
-=======
-Videre gjorde vi idemyldring for arkitekturdesign gjennom å vurdere kodene skrevet i prototypefasen der vi til slutt kom fram til hvordan bestillingssystemet og arkitekturen kunne mest fornuftig implementeres. Det var feks her at vi kom fram til at vi skulle bruke en tilstandsmaskin for sluttimplementasjonen og hvilke tilstander vi kom til å trenge som er illustrert i @stateUML.
->>>>>>> 88e017434b7883ab5eee414c6a53beef38193837
 
 #figure(
   placement: auto,
