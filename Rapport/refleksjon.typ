@@ -1,2 +1,4 @@
 = Refleksjon
-I begynnelsen så var det litt vanskelig å komme i gang, ettersom prosessen enda var litt ukjent. Derfor begynte vi med det kjente, altså å bare teste litt å se hva vi kommer på med. Senere med denne kunnskapen så begynte vi å abstrahere ifølge v-modellen og UML og vi kom frem til at det ga oss et bedre overblikk for programmet slik at vi kunne lage et mer ordentlig og oversiktlig program.
+Vi har brukt noe KI. I ingen grad å skrive faktisk kode, men heller hjelp til C funksjoner og syntaks. Claude.ai har vi for eksempel brukt om vi trengte en oppdatering på hvordan pekere håndteres. Da brukte vi den til å forklare og korrigere. Vi brukte i utgangspunkt w3schools.com til dette, men KI var ofte enklere ettersom det ga raskere respons og kunne forklare dypere på en mer verbal måte.
+
+Slik vi har brukt KI mener vi at prosessen altså har blitt enklere uten at vi ofret forståelse for stoffet.
