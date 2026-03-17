@@ -1,19 +1,19 @@
 = Struktur
 Testing og opprydding av kode slik at den fungerer bedre og ser finere ut, i henhold til V-modellens prosess, ga det ferdige produktet beskrevet her.
 
-Et overblikk over programmet funksjon kan gis med det ferdige tilstandsdiagrammet i @stateUMLFinal og kalssedigrammet i @ClassDiagram
+Et overblikk over programmets funksjon kan best gis med det ferdige tilstandsdiagrammet i @stateUMLFinal og kalssedigrammet i @ClassDiagram
 Programmets funksjon kan beskrives som følger.
 
 #figure(
   placement: auto,
-  image("media/State_diagram_final.png"),
+  image("media/State_diagram_final.drawio.pdf"),
   caption: [Fullført tilstandsdiagram],
   scope: "parent",
 ) <stateUMLFinal>
 
 #figure(
   placement: auto,
-  image("media/klasse_diagram.png"),
+  image("media/klasse_diagram.drawio.pdf"),
   caption: [Klasse diagram],
   scope: "parent",
 ) <ClassDiagram>
@@ -24,26 +24,40 @@ Alle tilstander utenom stopp og init kaller @lst:updateIO, som oppdaterer indika
 Heisens tilstand beskrives med enumen @lst:elevState og structen @lst:programState 
 
 == Initialiserings tilstand
-Når programmet startes så skjekker heisen først etter gyldig etasje. Her tar den ingen inputs. Dersom den starter i en gyldig etasje går den umiddelbart til idle state. Hvis ikke så begynner heisen å bevege seg nedover intill den treffer en gyldig etasje. Initialiseringen kan videre beskrives med @initialStateSequence
+Når programmet startes så skjekker heisen først etter gyldig etasje. Her tar den ingen inputs utenom etasje sensorene. Dersom den starter i en gyldig etasje går den umiddelbart til idle state. Hvis ikke så begynner heisen å bevege seg nedover intill den treffer en gyldig etasje. Initialiseringen kan videre beskrives med @initialStateSequence
 
 #figure(
   placement: auto,
-  image("media/sekvens_diagram_init.png"),
+  image("media/sekvens_diagram_init.drawio.pdf"),
   caption: [Sekvensdiagram for initialiseringen],
   scope: "parent",
 ) <initialStateSequence>
 
 == Idle tilstand
-I idle tilstand vil programmet lese ordre listen intill den finner en ny ordre.  Dersom ordren er i etasjen den er i åpner den bare døren. Ellers vil den endre tilstanden sin til rettningen ordren kom fra.
+I idle tilstand vil programmet lese ordre listen intill den finner en ny ordre.  Dersom ordren er i etasjen den er i åpner den bare døren. Ellers vil den endre tilstanden sin til rettningen ordren kom fra. Idle tilstanden kan videre beskrives med @idleStateSequence
+
+#figure(
+  placement: auto,
+  image("media/sekvens_diagram_idle.drawio.pdf"),
+  caption: [Sekvensdiagram for idle tilstanden],
+  scope: "parent",
+) <idleStateSequence>
 
 == Rettnings tilstand
-Dersom heisen er i en rettnings tilstand, altså opp eller ned, så vil motoren være i den korrosponderende rettningen. Dersom den er i en gyldig etasje vil den skjekke etter ordre. Først skjekker den alle ordre i rettningen den går i. Og dersom det er en i etasjen den er i kaller den @lst:completeOrder og deretter @lst:checkOrders som skjekker etter flere ordre i bevegelsesrettning og endrer tilstand til idle dersom det ikke er noen.
+Dersom heisen er i en rettnings tilstand, altså opp eller ned, så vil motoren være i den korrosponderende rettningen. Dersom den er i en gyldig etasje vil den skjekke etter ordre. Først skjekker den alle ordre i rettningen den går i. Dersom det er en ordre for samme retning den går i på etasjen den er i kaller den @lst:completeOrder og deretter @lst:checkOrders som skjekker etter flere ordre i bevegelsesrettning og endrer tilstand til idle dersom det ikke er noen. @upwardsStateSequence gir videre beskrivelse av betjeningen av en bestilling over heisen. Merk at betjeningen av en bestilling under heisen er for alle praktiske formål identisk til en bestilling over.
+
+#figure(
+  placement: auto,
+  image("media/sekvens_diagram_bestilling_over.drawio.pdf"),
+  caption: [Sekvensdiagram for en bestilling over heisen],
+  scope: "parent",
+) <upwardsStateSequence>
 
 == Stopp tilstand
-Stopp tilstanden begynner med å slette alle ordre og skru av indikatorlys tilhørende knapper og stopper motoren. En while løkke kjører så lenge stopp knappen er holdt og hindrer andre inputs. Når stopp knappen slippes vil den først skjekke om den er i en gyldig etasje, og dersom den er det kaller den @lst:completeOrder. Hvis ikke vil tilstanden endres til stopp idle tilstanden.
+Stopp tilstanden begynner med å slette alle ordre og skru av indikatorlys til tilhørende knapper ogstopper motoren. En tom/`__NOP` while løkke kjører så lenge stopp knappen er holdt og hindrer andre andre inputs. Når stopp knappen slippes vil den først skjekke om den er i en gyldig etasje, og dersom den er det kaller den @lst:completeOrder. Hvis ikke vil tilstanden endres til stopp idle tilstanden.
 
 == Stopp idle tilstand
-Denne tilstanden er et spesialtilfelle av idle tilstanden. Den fungerer på mange måter likt, med unntak av at den avhenger av tilstanden den var i før stopp knappen ble trykket på, for å bestemme rettningen den går når den får en ordre. Altså heisen vil alltid vite forrige etasjen den var i, men dersom den er mellom to etasjer så veit for eksempel at den er mellom 2. og 1. etasje dersom forrige etasje var 2 og tilstanden dens er ned. Denne informasjonen bruker den til å fungere virtuelt på samme måte som idle tilstanden (Forrige tilstandsvariabelen vil ikke oppdateres dersom den er i stopp idle når stopp knappen trykkes).
+Denne tilstanden er et spesialtilfelle av idle tilstanden. Den fungerer på mange måter likt, med unntak av at den avhenger av tilstanden den var i før stopp knappen ble trykket på, for å bestemme rettningen den går når den får en ordre. Altså heisen vil alltid vite forrige etasjen den var i, men dersom den er mellom to etasjer så veit den for eksempel at den er mellom 2. og 1. etasje dersom forrige etasje var 2 og tilstanden dens er ned. Denne informasjonen bruker den til å fungere virtuelt på samme måte som idle tilstanden (Forrige tilstandsvariabelen vil ikke oppdateres dersom den er i stopp idle når stopp knappen trykkes). Dette tilater heisen til å gå til etasjen den sist var på før stopp knappen ble trykket ettersom den ikke har noen sensorer som kan fortelle den hvor den er når den er mellom to etasjer.
 
 === Kodesnutter
 #figure(

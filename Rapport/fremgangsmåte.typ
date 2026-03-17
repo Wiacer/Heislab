@@ -24,7 +24,7 @@ Etter prototypingen begynte vi med den pragmatiske V-modellen og per den så sta
 
 #figure(
   placement: auto,
-  image("media/use_case.png"),
+  image("media/use_case.drawio.pdf"),
   caption: [Use-case diagram],
   scope: "parent",
 ) <usecaseUML>
@@ -98,7 +98,7 @@ Gitt tilstandsmaskinen kan use-case diagrammet beskrives slikt:
 #pad(left: 2em)[
   Pre-conditions:
   #pad(left: 2em)[
-    som velg etasje
+    Samme som Velg etasje
   ]
   Trigger:
   #pad(left: 2em)[
@@ -106,19 +106,19 @@ Gitt tilstandsmaskinen kan use-case diagrammet beskrives slikt:
   ]
   Suksess-scenario:
   #pad(left: 2em)[
-    som velg etasje
+    Samme som Velg etasje
   ]
 
   Utvidelser:
   #pad(left: 2em)[
-    som velg etasje
+    Samme som Velg etasje
   ]
 ]
 ]
 
 #figure(
   placement: auto,
-  image("media/State_diagram2.png"),
+  image("media/State_diagram2.drawio.pdf"),
   caption: [Førsteutkast av tilstands diagram],
   scope: "parent",
 ) <stateUML>
@@ -127,6 +127,6 @@ Når det gjelder heisens oppførsel bestemte vi at hvis den beveger seg i en ret
 
 Med utgangspunkt i det oppsatte rammeverket vårt, oversatte vi og implementerte vi koden vår i C. 
 
-Modulene vi endte opp med å bruke var `main.c` og `elevatorutils.c` der `main.c` inneholder tilstandsmaskinen og `elevatorutils.c` inkluderer alle hjelpefunksjoner. Som for eksempel @lst:checkOrders som skjekker om det er ordre i etasjene den er i, og fullfører den dersom den er gyldig, gitt kravene. 
+Koden vi endte opp med var delt i `main.c` og `elevatorutils.c` der `main.c` inneholder tilstandsmaskinen og `elevatorutils.c` inkluderer alle hjelpefunksjoner. Som for eksempel @lst:checkOrders som skjekker om det er ordre i etasjene den er i, og fullfører den dersom den er gyldig, gitt kravene. `elevatorutils.c` kan også videre deles inn i IO funksjoner som håndterer inputs og outputs og tilstandsmaskin funksjoner som håndterer logikken i tilstandsmaskinen. 
 
-Førsteutkastet av denne implementasjonen ga en nogenlunde fungerende kode. Hver implementerte modul ble tested og fungerte. Men den passerte ikke alle kravene til FAT testen. Spesifikt test S6 der Stopp tilstanden kunne huske dens forrige etasje, men på grunn av tilstands oppsettet, er den også avhengig av hvilken rettning tilstanden er i. Derfor endte vi opp med å legge til en til tilstand som beskriver når heisen er stoppet imellom to etasjer. 
+Førsteutkastet av denne implementasjonen ga en nogenlunde fungerende kode. Hver implementerte funksjon ble tested og fungerte. Men den passerte ikke alle kravene til FAT testen. Spesifikt test S6 der Stopp tilstanden kunne huske dens forrige etasje, men på grunn av tilstands oppsettet, er den også avhengig av hvilken rettningstilstand den var i. Derfor endte vi opp med å legge til en til tilstand som beskriver når heisen er blitt stoppet imellom to etasjer kalt `STOP_IDLE`.

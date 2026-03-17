@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/student/group11/lab_2/skeleton_project",
+            "binaryPath": "/home/student/group11/lab_2/skeleton_project/elevator",
+            "binaryArgs": []
+        }
+    ]
+}

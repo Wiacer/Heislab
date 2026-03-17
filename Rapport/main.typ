@@ -27,6 +27,14 @@
 
 \
 
-#include "refleksjon.typ"
+#include "refleksjon2.typ"
+
+#show link: underline
+#show link: set text(blue)
+
+
+Link til github repoet vårt: \ 
+#link("https://github.com/Wiacer/Heislab")\
+Merk at det vil være commits utenom oss fra github profiler som var sist pålogget på heislabben (vi gadd/turte ikke logge inn med vår egen konto hver gang)
 
 #set page(columns: 1)
